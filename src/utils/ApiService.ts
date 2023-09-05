@@ -3,7 +3,14 @@ import {injected} from "brandi";
 import {Tokens} from "./DI/tokens";
 
 export class ApiService {
-  constructor(private logger: Logger,) {}
+  // constructor(private logger: Logger,) {}
+
+  // @ts-ignore
+  private logger: Logger;
+
+  setLogger(logger: Logger) {
+    this.logger = logger;
+  }
 
   async getPeople() {
     return await fetch('https://swapi.dev/api/people').then(res => res.json()).then((data: Result<People>) => {
@@ -20,4 +27,4 @@ export class ApiService {
   }
 }
 
-injected(ApiService, Tokens.logger)
+injected(ApiService)

@@ -17,13 +17,17 @@ container
   .toInstance(ErrorLogger)
   .inTransientScope();
 
-container
-  .bind(Tokens.apiService)
-  .toInstance(ApiService)
-  .inTransientScope();
+// container
+//   .bind(Tokens.apiService)
+//   .toInstance(ApiService)
+//   .inTransientScope();
 
 container
-  .when(TAGS.planet)
-  .bind(Tokens.apiService)
-  .toInstance(ApiService)
-  .inTransientScope();
+  .bind(Tokens.apiServiceFactory)
+  .toFactory(ApiService, (instance, logger) => instance.setLogger(logger))
+
+// container
+//   .when(TAGS.planet)
+//   .bind(Tokens.apiService)
+//   .toInstance(ApiService)
+//   .inTransientScope();

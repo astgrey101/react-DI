@@ -6,18 +6,18 @@ import {Planets} from "../utils/Types";
 
 export const PlanetsList = withPlanetTag(() => {
   const logger = useInjection(Tokens.logger)
-  const apiService = useInjection(Tokens.apiService);
+  const apiServiceFactory = useInjection(Tokens.apiServiceFactory);
 
   const [list, setList] = useState<Planets[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     logger.log('Getting planets')
-    apiService.getPlanets().then(data => {
+    apiServiceFactory(logger).getPlanets().then(data => {
       setIsLoading(false)
       setList(data)
     })
-  }, [apiService,logger])
+  }, [apiServiceFactory,logger])
 
   return isLoading ? (<div>Loading planets...</div>) : (
     <>
