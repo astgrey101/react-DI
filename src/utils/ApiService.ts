@@ -5,7 +5,6 @@ import {Tokens} from "./DI/tokens";
 export class ApiService {
   // constructor(private logger: Logger,) {}
 
-  // @ts-ignore
   private logger: Logger;
 
   setLogger(logger: Logger) {
